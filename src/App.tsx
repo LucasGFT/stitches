@@ -46,72 +46,28 @@ function App() {
 
 
   return (
-    <Container>
-      <div style={{ display: 'flex', gap: '22px', alignItems: 'center', marginBottom: '149px' }}>
-        <Button
-          size="big"
-          color="black"
-          text="Agee and continue"
-          icon={<SearchIcon />}
-          icon2={<LocationIcon />}
-          icon3={<VoicemailIcon />} />
-        <Button
-          size="small"
-          color="red"
-          text="Search"
-          icon={<SearchIcon />} />
-      </div>
-      <div style={{ display: 'flex', gap: '17px' }}>
-        <ButtonBigContainer>
-          <Button
-            size="big"
-            color="red"
-            text="Primary"
-            icon={<EmailIcon />}
-          />
-          <Button
-            size="big"
-            color="black"
-            text="Secondary"
-            icon={<EmailIcon />}
-          />
-          <Button
-            size="big"
-            tertiary
-            text="Tertiary"
-            icon={<EmailIcon color="#000" />}
-          />
-          <Button
-            size="big"
-            text="Secondary"
-            icon={<EmailIcon />}
-            disabled
-          />
-        </ButtonBigContainer>
-        <ButtonSmallContainer>
-          <Button
-            size="medium"
-            text="Show 365 Stays"
-            icon={<SearchIcon />}
-            color="red" />
-          <Button
-            size="medium"
-            text="Show 365 Stays"
-            icon={<SearchIcon />}
-            color="black" />
-          <Button
-            size="medium"
-            text="Show 365 Stays"
-            icon={<SearchIcon color="#000" />}
-            color="white" />
-          <Button
-            size="medium"
-            text="Show 365 Stays"
-            icon={<SearchIcon />}
-            disabled />
-        </ButtonSmallContainer>
-      </div>
-    </Container >
+    <>
+      <Container>
+        <div style={{ display: 'flex', alignItems: 'center', marginBottom: '149px', gap: '22px' }}>
+          <Button text="Agee and continue" bgColor="black" icon={<EmailIcon />} moreIcons={[<LocationIcon />, <VoicemailIcon />]} />
+          <Button icon={<SearchIcon />} text="Search" size="sm" />
+        </div>
+        <div style={{ display: 'flex', gap: '17px' }}>
+          <ButtonBigContainer>
+            <Button icon={<EmailIcon />} text="Primary" />
+            <Button bgColor="black" icon={<EmailIcon />} text="Secondary" />
+            <Button oneIcon bgColor="white" icon={<EmailIcon color="#000" />} text="Tertiary" />
+            <Button isDisabled icon={<EmailIcon />} text="Secondary" />
+          </ButtonBigContainer>
+          <ButtonSmallContainer>
+            <Button icon={<SearchIcon />} size="md" text="Show 356 Stays" />
+            <Button icon={<SearchIcon />} size="md" bgColor="black" text="Show 356 Stays" />
+            <Button icon={<SearchIcon color="#000" />} size="md" bgColor="white" text="Show 356 Stays" />
+            <Button icon={<SearchIcon />} size="md" isDisabled text="Show 356 Stays" />
+          </ButtonSmallContainer>
+        </div>
+      </Container>
+    </>
   );
 }
 

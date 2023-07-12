@@ -1,101 +1,143 @@
-import { styled } from '@stitches/react'
+import { createStitches } from '@stitches/react'
 import { ReactNode } from 'react'
 
-interface TagButtonProps {
-    color?: 'red' | 'black' | 'white',
-    disabled?: boolean,
-    tertiary?: boolean,
-    size: 'big' | 'medium' | 'small',
-    text: string,
-    icon: ReactNode,
-    icon2?: ReactNode,
-    icon3?: ReactNode,
-}
+const { styled } = createStitches({
+    theme: {
+        colors: {
+            bgRed: '#DD3F57',
+            bgBlack: '#1C1B1B',
+            bgDisabled: '#AFAFAF',
+            borderBlack: '#212121',
+        },
+        space: {
+            1: '10px',
+            2: '12px',
+            3: '16px',
+        },
+        fontSizes: {
+            1: '16px',
+            2: '18px',
+        },
+    },
+})
 
 const TagButton = styled('button', {
+
     borderRadius: '8px',
-    fontWeight: 500,
     border: 'none',
+    fontWeight: 500,
+    cursor: 'pointer',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: '16px',
-    color: '#FFF',
-    cursor: 'pointer',
 
     variants: {
         color: {
-            red: {
-                backgroundColor: '#DD3F57',
+            black: {
+                color: '#000'
+            },
+            white: {
                 color: '#FFF'
+            }
+        },
+
+        bgColor: {
+            red: {
+                backgroundColor: '$bgRed',
             },
             black: {
-                backgroundColor: '#1C1B1B',
+                backgroundColor: '$bgBlack',
                 color: '#FFF'
             },
             white: {
-                backgroundColor: '#FFF',
-                color: '#1C1B1B',
-                border: '1px solid #000'
+                backgroundColor: '#FFFFFF',
+                border: '1px solid $borderBlack',
+                color: '$borderBlack'
             }
         },
+
         disabled: {
             true: {
-                backgroundColor: '#AFAFAF',
+                backgroundColor: '$bgDisabled',
                 cursor: 'not-allowed'
             }
         },
-        tertiary: {
+
+        oneIcon: {
             true: {
-                backgroundColor: '#FFF',
-                justifyContent: 'flex-end',
-                color: '#212121',
-                border: '1px solid black',
-                '& svg': {
-                    marginLeft: 100
-                }
+
             }
         },
+
         size: {
-            big: {
+            md: {
+                height: '48px',
+                width: '213px',
+                fontSize: '$1',
+                padding: '$2 $3'
+            },
+            sm: {
+                height: '48px',
+                width: '148px',
+                fontSize: '$1',
+                padding: '$1'
+            },
+            lg: {
                 width: '327px',
                 height: '56px',
-                fontSize: '18px'
-            },
-            medium: {
-                width: '213px',
-                height: '48px',
-                fontSize: '16px'
-            },
-            small: {
-                width: '148px',
-                height: '48px',
-                fontSize: '16px'
+                fontSize: '$2',
+                padding: '$3 $1',
+
+                '& svg': {
+                    margin: '0 6px'
+                }
             }
         }
-    }
+    },
+
+    // compoundVariants so aplica o css quando as variaveis forem correspondente
+    // compoundVariants: [{
+    //   color: 'blue',
+    //   size: 'lg',
+    //   css: {
+    //     backgroundColor: 'Purple'
+    //   }
+    // }],
+
+    // defaultVariants define um valor padrao
+    defaultVariants: {
+        bgColor: 'red',
+        size: 'lg',
+        color: 'white'
+    },
 })
 
-const TextButton = styled('p', {
-    display: 'flex',
-    alignItems: 'center',
-})
+interface ButtonProps {
+    text: string,
+    icon: ReactNode,
+    oneIcon?: boolean,
+    color?: 'black' | 'white',
+    bgColor?: 'red' | 'white' | 'black',
+    isDisabled?: boolean,
+    size?: 'md' | 'sm' | 'lg',
+    moreIcons?: ReactNode[]
+}
 
-
-export default function Button({ disabled, tertiary, color, size, text, icon, icon2, icon3 }: TagButtonProps) {
+export default function Button({ text, icon, bgColor, color, oneIcon, isDisabled, size, moreIcons }: ButtonProps) {
     return (
         <TagButton
-            disabled={disabled}
-            tertiary={tertiary}
-            color={color}
             size={size}
+            disabled={isDisabled}
+            color={color}
+            bgColor={bgColor}
+
         >
-            {!tertiary && icon}
-            <TextButton>
-                {icon2}
-                {text}
-                {icon3}
-            </TextButton>
+            {oneIcon ? (
+                <span style={{ marginRight: '40px' }} />
+            ) : icon}
+            {moreIcons ? (
+                <p style={{ display: 'flex', justifyContent: 'center' }}>{moreIcons[0]}{text}{moreIcons[1]}</p>
+            ) : text}
             {icon}
         </TagButton>
     )
