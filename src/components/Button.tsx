@@ -31,6 +31,11 @@ const TagButton = styled('button', {
     alignItems: 'center',
     justifyContent: 'space-between',
 
+    '& span': {
+        width: '24px',
+        display: 'flex',
+    },
+
     variants: {
         color: {
             black: {
@@ -59,13 +64,8 @@ const TagButton = styled('button', {
         disabled: {
             true: {
                 backgroundColor: '$bgDisabled',
-                cursor: 'not-allowed'
-            }
-        },
-
-        oneIcon: {
-            true: {
-
+                cursor: 'not-allowed',
+                color: '#FFF'
             }
         },
 
@@ -74,7 +74,7 @@ const TagButton = styled('button', {
                 height: '48px',
                 width: '213px',
                 fontSize: '$1',
-                padding: '$2 $3'
+                padding: '$2 $3',
             },
             sm: {
                 height: '48px',
@@ -90,6 +90,10 @@ const TagButton = styled('button', {
 
                 '& svg': {
                     margin: '0 6px'
+                },
+
+                '& span': {
+                    width: '40px'
                 }
             }
         }
@@ -108,37 +112,31 @@ const TagButton = styled('button', {
     defaultVariants: {
         bgColor: 'red',
         size: 'lg',
-        color: 'white'
+        color: 'white',
     },
 })
 
 interface ButtonProps {
     text: string,
-    icon: ReactNode,
-    oneIcon?: boolean,
+    iconLeft?: ReactNode,
+    iconRight?: ReactNode,
     color?: 'black' | 'white',
     bgColor?: 'red' | 'white' | 'black',
     isDisabled?: boolean,
     size?: 'md' | 'sm' | 'lg',
-    moreIcons?: ReactNode[]
 }
 
-export default function Button({ text, icon, bgColor, color, oneIcon, isDisabled, size, moreIcons }: ButtonProps) {
+export default function Button({ text, iconLeft, iconRight, bgColor, color, isDisabled, size }: ButtonProps) {
     return (
         <TagButton
             size={size}
             disabled={isDisabled}
             color={color}
             bgColor={bgColor}
-
         >
-            {oneIcon ? (
-                <span style={{ marginRight: '40px' }} />
-            ) : icon}
-            {moreIcons ? (
-                <p style={{ display: 'flex', justifyContent: 'center' }}>{moreIcons[0]}{text}{moreIcons[1]}</p>
-            ) : text}
-            {icon}
+            <span>{iconLeft}</span>
+            <p>{text}</p>
+            <span>{iconRight}</span>
         </TagButton>
     )
 }

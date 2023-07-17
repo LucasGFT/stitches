@@ -3,8 +3,7 @@ import { styled } from "@stitches/react";
 import Button from "./components/Button";
 import EmailIcon from "./components/icons/EmailIcon";
 import SearchIcon from "./components/icons/SearchIcon";
-import LocationIcon from "./components/icons/LocationIcon";
-import VoicemailIcon from "./components/icons/VoicemailIcon";
+
 
 function App() {
   const ButtonBigContainer = styled('div', {
@@ -49,21 +48,19 @@ function App() {
     <>
       <Container>
         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '149px', gap: '22px' }}>
-          <Button text="Agee and continue" bgColor="black" icon={<EmailIcon />} moreIcons={[<LocationIcon />, <VoicemailIcon />]} />
-          <Button icon={<SearchIcon />} text="Search" size="sm" />
+          <Button iconRight={<SearchIcon />} text="Search" size="sm" />
         </div>
         <div style={{ display: 'flex', gap: '17px' }}>
           <ButtonBigContainer>
-            <Button icon={<EmailIcon />} text="Primary" />
-            <Button bgColor="black" icon={<EmailIcon />} text="Secondary" />
-            <Button oneIcon bgColor="white" icon={<EmailIcon color="#000" />} text="Tertiary" />
-            <Button isDisabled icon={<EmailIcon />} text="Secondary" />
+            <Button iconLeft={<EmailIcon />} iconRight={<EmailIcon />} text="Primary" />
+            <Button bgColor="black" iconLeft={<EmailIcon />} text="Secondary" />
+            <Button bgColor="white" iconRight={<EmailIcon />} text="Tertiary" />
+            <Button iconRight={<EmailIcon />} isDisabled text="Secondary" />
           </ButtonBigContainer>
           <ButtonSmallContainer>
-            <Button icon={<SearchIcon />} size="md" text="Show 356 Stays" />
-            <Button icon={<SearchIcon />} size="md" bgColor="black" text="Show 356 Stays" />
-            <Button icon={<SearchIcon color="#000" />} size="md" bgColor="white" text="Show 356 Stays" />
-            <Button icon={<SearchIcon />} size="md" isDisabled text="Show 356 Stays" />
+            <Button iconRight={<SearchIcon />} size="md" text="Show 356 Stays" />
+            <Button iconLeft={<SearchIcon />} size="md" bgColor="black" text="Show 356 Stays" />
+            <Button iconRight={<SearchIcon color="#000" />} iconLeft={<SearchIcon color="#000" />} size="md" bgColor="white" text="Show 356 Stays" />
           </ButtonSmallContainer>
         </div>
       </Container>
